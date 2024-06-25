@@ -15,7 +15,9 @@ A daily ELT pipeline that writes weather data for Orlando, New York, and San Fra
 * upload_to_gcs
   * Writes the dataframe to a parquet file and uploads that file to a bucket in Google Cloud Storage. The bucket has a year/month/day structure to it - in case some days needed to be backfilled or even if the whole table was dropped, having the raw data already accessible should help speed up backfills.
 * create_or_update_bq_table
-  * Requirement 
+  * Requirements can change a lot from what I've seen, so this block was a way to account for schema changes in the dataframe. It updates the table in BQ so if there were additions it can still be successfully written to it, or just confirms it's the same. Also will create the table if it doesn't exist, gets dropped, etc.
+* load_data_to_bigquery
+  * Loads the daily partition from GCS to BQ and appends it to the table. While I was testing this function locally I was of course running into the issue where the data would append and duplicate if I ran it multiple times, so added a query that checks if data for that date already exists and skips the load if it does.
 
 ![image](https://github.com/Marosenthal18/Weather-Project/assets/60559647/c481875e-8814-40f2-8024-a46c7a33e0eb)
 
