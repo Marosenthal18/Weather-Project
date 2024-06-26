@@ -2,7 +2,10 @@
 
 A daily ELT pipeline that writes weather data for Orlando, New York, and San Francisco to BigQuery. The transformations/business logic are then done in BigQuery, and a view is created - this view would be used as a basis for any BI layer. 
 
-## High Level Overview
+## High Level Architecture
+
+![image](https://github.com/Marosenthal18/Weather-Project/assets/60559647/9cc4cf43-a24d-42c9-a007-014274638584)
+
 
 ## Pipeline Breakdown
 
@@ -17,9 +20,10 @@ A daily ELT pipeline that writes weather data for Orlando, New York, and San Fra
 * create_or_update_bq_table
   * Requirements can change a lot from what I've seen, so this block was a way to account for schema changes in the dataframe. It updates the table in BQ so if there were additions it can still be successfully written to it, or just confirms it's the same. Also will create the table if it doesn't exist, gets dropped, etc.
 * load_data_to_bigquery
-  * Loads the daily partition from GCS to BQ and appends it to the table. While I was testing this function locally I was of course running into the issue where the data would append and duplicate if I ran it multiple times, so added a query that checks if data for that date already exists and skips the load if it does.
+  * Loads the daily partition from GCS to BQ and appends it to the table. While I was testing this function locally I was of course running into the issue where the data would append and duplicate if I ran it multiple times, so added logic that checks if data for that date already exists and skips the load if it does.
 
-![image](https://github.com/Marosenthal18/Weather-Project/assets/60559647/c481875e-8814-40f2-8024-a46c7a33e0eb)
+
+ ![image](https://github.com/Marosenthal18/Weather-Project/assets/60559647/c481875e-8814-40f2-8024-a46c7a33e0eb)
 
 
 
