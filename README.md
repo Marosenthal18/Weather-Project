@@ -4,7 +4,8 @@ A daily ELT pipeline that writes weather data for Orlando, New York, and San Fra
 
 ## High Level Architecture
 
-![image](https://github.com/Marosenthal18/Weather-Project/assets/60559647/9cc4cf43-a24d-42c9-a007-014274638584)
+![image](https://github.com/Marosenthal18/Weather-Project/assets/60559647/f8d0c7b7-59aa-4ac9-bae3-84317a2ac209)
+
 
 
 ## Pipeline Breakdown
